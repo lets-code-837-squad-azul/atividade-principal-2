@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import clientPromise from "../../../lib/mongodb";
 
 //  Variável de Ambiente que armazena o nome do banco de dados 
@@ -29,9 +30,10 @@ export default async function handler(req, res) {
         case "DELETE":
             //  Realiza o DELETE
 
+            const id_do_filme = req.query['movie-id'];  //  req.query['movie-id'] é a parte final da URL
             const deletarFilme = await db
                 .collection("movies")
-                .deleteOne({ _id: req.query['movie-id'] });
+                .deleteOne({ _id: ObjectId(id_do_filme) });
             res.json({ body: deletarFilme });
             break;
     }

@@ -5,7 +5,6 @@ const URL = process.env.NEXT_PUBLIC_BASE_URL;
 export default function Home({ movies }) {
 
   const lista_de_filmes = movies.body;
-  console.log({lista_de_filmes})
   const input_post = useRef(null);
   const input_update = useRef(null);
   const input_delete = useRef(null);
@@ -38,19 +37,18 @@ export default function Home({ movies }) {
         lastupdated: data
       })
     })
-    console.log("PUT", res);
+    console.log("PUT =>", res);
   }
 
   const del = async () => {
     //  Excluindo dados do Banco utilizando o método DELETE
 
-    const nome_do_filme = input_delete.current.value;
+    const id_do_filme = input_delete.current.value;
 
-    const res = await fetch(URL + "api/movies", {
-      method: "DELETE",
-      body: JSON.stringify({ title: nome_do_filme })
+    const res = await fetch(URL + "api/movies/" + id_do_filme, {
+      method: "DELETE"
     })
-    console.log("DELETE", res);
+    console.log("DELETE =>", res);
   }
 
   return (
@@ -75,7 +73,7 @@ export default function Home({ movies }) {
 
       <div>
         <label>Exclui o filme indicado </label>
-        <input type="text" ref={input_delete} placeholder="Nome do Filme (title)"></input>
+        <input type="text" ref={input_delete} placeholder="ID do Filme"></input>
         <button type="submit" onClick={del}>DELETE</button>
       </div>
 
