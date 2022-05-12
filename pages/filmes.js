@@ -28,12 +28,11 @@ export default function Home({ movies }) {
     //  Atualizando dados no Banco utilizando o método PUT
 
     const data = Date().toLocaleString();
-    const nome_do_filme = input_update.current.value;
+    const id_do_filme = input_update.current.value;
     
-    const res = await fetch(URL + "api/movies", {
+    const res = await fetch(URL + "api/movies/" + id_do_filme, {
       method: "PUT",
       body: JSON.stringify({
-        title: nome_do_filme,
         lastupdated: data
       })
     })
@@ -56,7 +55,7 @@ export default function Home({ movies }) {
       <h1>Filmes de 2015</h1>
 
       <div>
-        <label>Cria filme com o nome indicado, no ano 2015 </label>
+        <label>Cria filme com o nome indicado, no ano 2015: </label>
         <input type="text" ref={input_post} placeholder="Nome do Filme (title)"></input>
         <button type="submit" onClick={post}>POST</button>
       </div>
@@ -64,15 +63,15 @@ export default function Home({ movies }) {
       <br></br>
 
       <div>
-        <label>Atualiza o "lastupdated" do filme com a data atual </label>
-        <input type="text" ref={input_update} placeholder="Nome do Filme (title)"></input>
+        <label>Atualiza o "lastupdated" do filme com a data atual: </label>
+        <input type="text" ref={input_update} placeholder="ID do Filme"></input>
         <button type="submit" onClick={put}>PUT</button>
       </div>
 
       <br></br>
 
       <div>
-        <label>Exclui o filme indicado </label>
+        <label>Exclui o filme indicado: </label>
         <input type="text" ref={input_delete} placeholder="ID do Filme"></input>
         <button type="submit" onClick={del}>DELETE</button>
       </div>

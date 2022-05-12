@@ -9,6 +9,8 @@ export default async function handler(req, res) {
     //  Informações do Banco
     const client = await clientPromise;
     const db = client.db(mongodb);
+    
+    const id_do_filme = req.query['movie-id'];  //  req.query['movie-id'] é a parte final da URL
 
     switch (req.method) {
 
@@ -17,9 +19,9 @@ export default async function handler(req, res) {
 
             const filmeAtualizado = JSON.parse(req.body);
             const atualizarFilme = await db
-                .collection("movie")
+                .collection("movies")
                 .updateOne({ 
-                    title: filmeAtualizado.title }, {
+                    _id: ObjectId(id_do_filme) }, {
                         $set:
                             { lastupdated: filmeAtualizado.lastupdated }
                     }
@@ -30,7 +32,6 @@ export default async function handler(req, res) {
         case "DELETE":
             //  Realiza o DELETE
 
-            const id_do_filme = req.query['movie-id'];  //  req.query['movie-id'] é a parte final da URL
             const deletarFilme = await db
                 .collection("movies")
                 .deleteOne({ _id: ObjectId(id_do_filme) });
