@@ -5,6 +5,7 @@ const URL = process.env.NEXT_PUBLIC_BASE_URL;
 export default function Home({ movies }) {
 
   const lista_de_filmes = movies.body;
+  console.log({lista_de_filmes})
   const input_post = useRef(null);
   const input_update = useRef(null);
   const input_delete = useRef(null);
@@ -98,6 +99,5 @@ export async function getServerSideProps(context) {
 
   //  Armazena o conteúdo da query 
   const movies = await res.json();
-
   return { props: { movies } }
 }
