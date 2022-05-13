@@ -13,14 +13,17 @@ export default async function handler(req, res) {
 
         case "GET":
             //  Realiza o SELECT (READ)
-            
+
+            const filtro_ano = req.query['year'] ? parseInt(req.query['year']) : 2015;
+            const filtro_limit = parseInt(req.query['limit']) || 10;
             const movies = await db
                 .collection("movies")
-                .find({ year: 2015 })
+                .find({ year: filtro_ano })
                 .sort({ title: 1 })
-                .limit(50)
+                .limit(filtro_limit)
                 .toArray();
-            res.json({ body: movies});      
+                console.log(movies)
+                res.json({ body: movies});      
             break;
         
         case "POST":
