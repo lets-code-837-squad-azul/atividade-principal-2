@@ -24,6 +24,7 @@ export default async function handler(req, res) {
                 .sort({ title: 1 })
                 .limit(filtro_limit)
                 .toArray();
+                console.log(movies)
                 res.json({ body: movies});      
             break;
         

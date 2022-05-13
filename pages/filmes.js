@@ -52,19 +52,13 @@ export default function Home({ movies }) {
     console.log("DELETE =>", res);
   }
 
-  /* const get = async () => {
+  const get = async () => {
     //  recebendo dados utilizando metodo GET
     const ano = input_get_ano.current.value;
     const limit = input_get_limit.current.value;
-    const res = await fetch(URL + "api/movies", {
-      method: "GET",
-      body: JSON.stringify({
-        limit: limit,
-        year: ano
-      })
-    })
+    const res = await fetch(URL + "api/movies/ano="+ano+"&limit="+limit)
     console.log("GET =>", res);
-  } */
+  }
 
   return (
     <div className="container">
@@ -94,13 +88,13 @@ export default function Home({ movies }) {
 
       <br></br>
 
-      {/* <div>
+      <div>
         <label>Definir ano:</label>
         <input type="number" ref={input_get_ano} ></input>
         <label>&ensp; Tamanho da lista de filmes:</label>
         <input type="number" ref={input_get_limit} ></input>
         <button type="submit" onClick={get}>PESQUISAR</button>
-      </div> */}
+      </div>
 
       <ul>
         {lista_de_filmes.map((movie, index) => {
