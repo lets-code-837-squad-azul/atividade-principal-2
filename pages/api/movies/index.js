@@ -14,10 +14,8 @@ export default async function handler(req, res) {
         case "GET":
             //  Realiza o SELECT (READ)
 
-            const filtro_ano = req.query['year']? parseInt(req.query['year']):2015;
+            const filtro_ano = req.query['year'] ? parseInt(req.query['year']) : 2015;
             const filtro_limit = parseInt(req.query['limit']) || 10;
-            console.log(filtro_ano)
-            console.log(filtro_limit)
             const movies = await db
                 .collection("movies")
                 .find({ year: filtro_ano })

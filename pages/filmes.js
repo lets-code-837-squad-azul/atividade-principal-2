@@ -89,10 +89,10 @@ export default function Home({ movies }) {
       <br></br>
 
       <div>
-        <label>Definir ano:</label>
-        <input type="number" ref={input_get_ano} ></input>
-        <label>&ensp; Tamanho da lista de filmes:</label>
-        <input type="number" ref={input_get_limit} ></input>
+        <label>Definir ano: </label>
+        <input type="number" ref={input_get_ano}></input>
+        <label>&ensp; Tamanho da lista de filmes: </label>
+        <input type="number" ref={input_get_limit}></input>
         <button type="submit" onClick={get}>PESQUISAR</button>
       </div>
 
