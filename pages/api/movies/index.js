@@ -13,12 +13,12 @@ export default async function handler(req, res) {
 
         case "GET":
             //  Realiza o SELECT (READ)
-            
+            /* const filtro_ano_limit = JSON.parse(req.body); */
             const movies = await db
                 .collection("movies")
                 .find({ year: 2015 })
                 .sort({ title: 1 })
-                .limit(50)
+                .limit(10)
                 .toArray();
             res.json({ body: movies});      
             break;

@@ -8,6 +8,8 @@ export default function Home({ movies }) {
   const input_post = useRef(null);
   const input_update = useRef(null);
   const input_delete = useRef(null);
+  const input_get_ano = useRef(null);
+  const input_get_limit = useRef(null);
 
   const post = async () => {
     //  Inserindo dados no Banco utilizando o método POST 
@@ -50,6 +52,20 @@ export default function Home({ movies }) {
     console.log("DELETE =>", res);
   }
 
+  const get = async () => {
+    //  recebendo dados utilizando metodo GET
+    const ano = input_get_ano.current.value;
+    const limit = input_get_limit.current.value;
+    const res = await fetch(URL + "api/movies", {
+      method: "GET",
+      body: JSON.stringify({
+        limit: limit,
+        year: ano
+      })
+    })
+    console.log("GET =>", res);
+  }
+
   return (
     <div className="container">
       <h1>Filmes de 2015</h1>
@@ -74,6 +90,16 @@ export default function Home({ movies }) {
         <label>Exclui o filme indicado: </label>
         <input type="text" ref={input_delete} placeholder="ID do Filme"></input>
         <button type="submit" onClick={del}>DELETE</button>
+      </div>
+
+      <br></br>
+
+      <div>
+        <label>Definir ano:</label>
+        <input type="number" ref={input_get_ano} ></input>
+        <label>&ensp; Tamanho da lista de filmes:</label>
+        <input type="number" ref={input_get_limit} ></input>
+        <button type="submit" onClick={get}>PESQUISAR</button>
       </div>
 
       <ul>
