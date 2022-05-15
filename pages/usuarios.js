@@ -8,7 +8,6 @@ export default function Home({ users }) {
   const input_post = useRef(null);
   const input_update = useRef(null);
   const input_delete = useRef(null);
-  const input_get_nome = useRef(null);
   const input_get_limit = useRef(null);
 
   const post = async () => {
@@ -20,7 +19,7 @@ export default function Home({ users }) {
       method: "POST",
       body: JSON.stringify({
         name: nome_do_usuario,
-        email: nome_do_usuario + '@fakegmail.com'
+        email: nome_do_usuario.toLowerCase() + '@fakegmail.com'
       })
     })
     console.log("POST =>", res);
@@ -54,9 +53,7 @@ export default function Home({ users }) {
 
   const get = async () => {
     //  recebendo dados utilizando metodo GET
-    // const nome = input_get_nome.current.value;
     const limit = input_get_limit.current.value;
-    // const res = await fetch(URL + "api/users/nome="+nome+"&limit="+limit)
     const res = await fetch(URL + "api/users/limit="+limit)
     console.log("GET =>", res);
   }
