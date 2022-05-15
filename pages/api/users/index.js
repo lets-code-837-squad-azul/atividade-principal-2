@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
             // const filtro_nome = req.query['name'] ? req.query['name'] : "Ned Stark";
             const filtro_nome = req.query['name'] ? req.query['name'] : null;
-            const filtro_limit = parseInt(req.query['limit']) || 10;
+            const filtro_limit = parseInt(req.query['limit']) || 15;
 
             if (filtro_nome) {
                 const users = await db

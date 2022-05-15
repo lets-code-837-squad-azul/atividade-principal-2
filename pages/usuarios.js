@@ -20,7 +20,7 @@ export default function Home({ users }) {
       method: "POST",
       body: JSON.stringify({
         name: nome_do_usuario,
-        // year: 2015
+        email: nome_do_usuario + '@fakegmail.com'
       })
     })
     console.log("POST =>", res);
@@ -88,14 +88,6 @@ export default function Home({ users }) {
       </div>
 
       <br></br>
-
-      <div>
-        {/* {<label>Definir nome: </label>
-        <input type="text" ref={input_get_nome}></input> } */}
-        <label>&ensp; Tamanho da lista de usuários: </label>
-        <input type="number" ref={input_get_limit}></input>
-        <button type="submit" onClick={get}>PESQUISAR</button>
-      </div>
 
       <ul>
         {lista_de_usuarios.map((users, index) => {
