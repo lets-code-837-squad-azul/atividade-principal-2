@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         case "GET":
             //  Realiza o SELECT (READ)
 
-            const filtro_nome = req.query['name'] ? parseInt(req.query['name']) : " ";
+            const filtro_nome = req.query['name'] ? parseInt(req.query['name']) : "Jaime Lannister";
             // const filtro_nome = req.query['name'] ? parseInt(req.query['name']) : "Ned Stark";
             // const filtro_email = req.query['email'] ? parseInt(req.query['email']) : 2015;
             const filtro_limit = parseInt(req.query['limit']) || 10;
