@@ -8,7 +8,7 @@ export default function Home({ users }) {
   const input_post = useRef(null);
   const input_update = useRef(null);
   const input_delete = useRef(null);
-//   const input_get_ano = useRef(null);
+  const input_get_nome = useRef(null);
   const input_get_limit = useRef(null);
 
   const post = async () => {
@@ -19,7 +19,7 @@ export default function Home({ users }) {
     const res = await fetch(URL + "api/users", {
       method: "POST",
       body: JSON.stringify({
-        // title: nome_do_usuario,
+        name: nome_do_usuario,
         // year: 2015
       })
     })
@@ -54,9 +54,10 @@ export default function Home({ users }) {
 
   const get = async () => {
     //  recebendo dados utilizando metodo GET
-    // const ano = input_get_ano.current.value;
+    // const nome = input_get_nome.current.value;
     const limit = input_get_limit.current.value;
-    const res = await fetch(URL + "api/users/ano="+ano+"&limit="+limit)
+    // const res = await fetch(URL + "api/users/nome="+nome+"&limit="+limit)
+    const res = await fetch(URL + "api/users/limit="+limit)
     console.log("GET =>", res);
   }
 
@@ -89,8 +90,8 @@ export default function Home({ users }) {
       <br></br>
 
       <div>
-        {/* <label>Definir ano: </label>
-        <input type="number" ref={input_get_ano}></input> */}
+        {/* {<label>Definir nome: </label>
+        <input type="text" ref={input_get_nome}></input> } */}
         <label>&ensp; Tamanho da lista de usuários: </label>
         <input type="number" ref={input_get_limit}></input>
         <button type="submit" onClick={get}>PESQUISAR</button>
