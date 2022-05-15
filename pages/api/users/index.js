@@ -14,19 +14,28 @@ export default async function handler(req, res) {
         case "GET":
             //  Realiza o SELECT (READ)
 
-            const filtro_nome = req.query['name'] ? parseInt(req.query['name']) : " ";
-            // const filtro_nome = req.query['name'] ? parseInt(req.query['name']) : "Ned Stark";
-            // const filtro_email = req.query['email'] ? parseInt(req.query['email']) : 2015;
+            // const filtro_nome = req.query['name'] ? req.query['name'] : "Ned Stark";
+            const filtro_nome = req.query['name'] ? req.query['name'] : null;
             const filtro_limit = parseInt(req.query['limit']) || 10;
-            const users = await db
+
+            if (filtro_nome) {
+                const users = await db
                 .collection("users")
                 .find({ name: filtro_nome })
                 .sort({ name: 1 })
-                // .sort({ email: 1 })
                 .limit(filtro_limit)
                 .toArray();
-                console.log(users)
-                res.json({ body: users});      
+                res.json({ body: users});
+            }
+            else {
+                const users = await db
+                .collection("users")
+                .find()
+                .sort({ name: 1 })
+                .limit(filtro_limit)
+                .toArray();
+                res.json({ body: users});
+            }
             break;
         
         case "POST":
