@@ -10,4 +10,4 @@
 
 ### EXTRA (300XP)
 
-- [ ] Criar as rotas de GET, POST, PUT e DELETE para users, alterando/acessando os dados no banco;
+- [X] Criar as rotas de GET, POST, PUT e DELETE para users, alterando/acessando os dados no banco;
